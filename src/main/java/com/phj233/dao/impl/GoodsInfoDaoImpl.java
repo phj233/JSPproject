@@ -22,16 +22,16 @@ public class GoodsInfoDaoImpl implements GoodsInfoDao_ {
     private List<GoodInfo> getGoodsList(List<GoodInfo> goodsInfoList, List<Map<String, Object>> list) {
         for(Map<String,Object> map : list){
             GoodInfo goodsInfo = new GoodInfo();
-            goodsInfo.setgId((Integer) map.get("gid"));
-            goodsInfo.setgName((String) map.get("gname"));
-            goodsInfo.setgPrice((Double) map.get("gprice"));
-            goodsInfo.setgClass((String) map.get("gclass"));
-            goodsInfo.setgAmount((Integer) map.get("gamount"));
-            goodsInfo.setgDate((LocalDateTime) map.get("gdate"));
-            goodsInfo.setgImgurl((String) map.get("gimgurl"));
-            goodsInfo.setgLook((Integer) map.get("glook"));
-            goodsInfo.setgIntro((String) map.get("gintro"));
-            goodsInfo.setgBrief((String) map.get("gbrief"));
+            goodsInfo.setgId((Integer) map.get("Gid"));
+            goodsInfo.setgName((String) map.get("Gname"));
+            goodsInfo.setgPrice((Double) map.get("Gprice"));
+            goodsInfo.setgClass((String) map.get("Gclass"));
+            goodsInfo.setgAmount((Integer) map.get("Gamount"));
+            goodsInfo.setgDate((LocalDateTime) map.get("Gdate"));
+            goodsInfo.setgImgurl((String) map.get("Gimgurl"));
+            goodsInfo.setgLook((Integer) map.get("Glook"));
+            goodsInfo.setgIntro((String) map.get("Gintro"));
+            goodsInfo.setgBrief((String) map.get("Gbrief"));
             goodsInfoList.add(goodsInfo);
         }
         return goodsInfoList;

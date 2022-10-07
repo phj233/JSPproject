@@ -23,7 +23,7 @@ class GoodsTest {
     @Test
     void queryGoodsInfo() {
         List<GoodInfo> list = new GoodsInfoDaoImpl().queryGoodsInfo(
-                "select * from goodsinfo where name like ?", "%test%");
+                "select * from goodsinfo where Gname like ?", "%夫%");
         list.forEach(System.out::println);
     }
 
