@@ -62,7 +62,7 @@ public class DBUtil {
         }
         return rs;
     }
-    // 全查并输出
+    //全查并输出
     public static ResultSet AllSelect(String table) {
         try {
             connet=getConnect();

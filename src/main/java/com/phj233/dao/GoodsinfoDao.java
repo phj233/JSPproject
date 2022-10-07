@@ -1,6 +1,5 @@
 package com.phj233.dao;
 
-import com.phj233.pojo.AdminInfo;
 import com.phj233.pojo.GoodInfo;
 
 import java.sql.SQLException;

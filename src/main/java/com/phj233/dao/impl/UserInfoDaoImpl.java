@@ -1,5 +1,6 @@
-package com.phj233.dao;
+package com.phj233.dao.impl;
 
+import com.phj233.dao.UserInfoDao;
 import com.phj233.pojo.GoodInfo;
 import com.phj233.pojo.UserInfo;
 import com.phj233.util.DBUtil;
@@ -9,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserInfoDaoImpl implements UserInfoDao{
+public class UserInfoDaoImpl implements UserInfoDao {
     @Override
     public List<UserInfo> getUsersInfoList(String sql) throws SQLException {
         ResultSet selectRs = DBUtil.select(sql);

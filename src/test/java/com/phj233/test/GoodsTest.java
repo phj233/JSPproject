@@ -1,17 +1,16 @@
-package com.phj233.dao.impl;
+package com.phj233.test;
 
+import com.phj233.dao.impl.GoodsInfoDaoImpl;
 import com.phj233.pojo.GoodInfo;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * @author 未確認の庭師
  */
-class GoodsInfoDaoImplTest {
+class GoodsTest {
 
     //全查
     @Test

@@ -1,5 +1,6 @@
-package com.phj233.dao;
+package com.phj233.dao.impl;
 
+import com.phj233.dao.AdminInfoDao;
 import com.phj233.pojo.AdminInfo;
 import com.phj233.util.DBUtil;
 
@@ -8,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminInfoDaoImpl implements AdminInfoDao{
+public class AdminInfoDaoImpl implements AdminInfoDao {
 
     @Override
     public List<AdminInfo> getAdminInfoList(String sql) throws SQLException {

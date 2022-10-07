@@ -1,6 +1,6 @@
 package com.phj233.test;
 
-import com.phj233.dao.AdminInfoDaoImpl;
+import com.phj233.dao.impl.AdminInfoDaoImpl;
 import com.phj233.pojo.AdminInfo;
 import com.phj233.util.DBUtil;
 import org.junit.jupiter.api.Test;
