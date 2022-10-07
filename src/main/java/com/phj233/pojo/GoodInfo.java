@@ -1,5 +1,6 @@
 package com.phj233.pojo;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class GoodInfo {
@@ -7,12 +8,12 @@ public class GoodInfo {
     private String gName,gClass,gImgurl,gIntro,gBrief;
     private Double gPrice;
     private Integer gAmount;
-    private Date gDate;
+    private LocalDateTime gDate;
 
     public GoodInfo() {
     }
 
-    public GoodInfo(Integer gId, Integer gLook, String gName, String gClass, String gImgurl, String gIntro, String gBrief, Double gPrice, Integer gAmount, Date gDate) {
+    public GoodInfo(Integer gId, Integer gLook, String gName, String gClass, String gImgurl, String gIntro, String gBrief, Double gPrice, Integer gAmount, LocalDateTime gDate) {
         this.gId = gId;
         this.gLook = gLook;
         this.gName = gName;
@@ -97,11 +98,11 @@ public class GoodInfo {
         this.gAmount = gAmount;
     }
 
-    public Date getgDate() {
+    public LocalDateTime getgDate() {
         return gDate;
     }
 
-    public void setgDate(Date gDate) {
+    public void setgDate(LocalDateTime gDate) {
         this.gDate = gDate;
     }
 

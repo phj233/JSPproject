@@ -4,6 +4,7 @@ import com.phj233.util.DBUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class GoodsinfoDaoImpl implements GoodsinfoDao{
             goodInfo.setgAmount(selectRs.getInt("Gamount"));
             goodInfo.setgIntro(selectRs.getString("Gintro"));
             goodInfo.setgLook(selectRs.getInt("Glook"));
-            goodInfo.setgDate(selectRs.getDate("Gdate"));
+            goodInfo.setgDate((LocalDateTime) selectRs.getObject("Gdate"));
             goodInfo.setgImgurl(selectRs.getString("Gimgurl"));
             goodInfo.setgClass(selectRs.getString("Gclass"));
             goodInfo.setgBrief(selectRs.getString("Gbrief"));
