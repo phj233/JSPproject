@@ -1,8 +1,8 @@
-# JDBC核心技术
+# Re:JDBC文档重置版
 
 ***
 
-## 第1章：JDBC概述
+## 第1章：JAVA DATABASES CONNECTION
 
 ### 1.1 数据的持久化
 
