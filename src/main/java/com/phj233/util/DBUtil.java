@@ -52,29 +52,31 @@ public class DBUtil {
     }
 
     public static ResultSet select(String sql) throws SQLException {
-//        try {
-//            prestmt = connet.prepareStatement(sql);
-//            rs = prestmt.executeQuery();
-//            ResultSetMetaData resultSetMetaData = prestmt.getMetaData();
-//            int colCount=resultSetMetaData.getColumnCount();
-//            while (rs.next()) {
-//                for (int i=1;i <= colCount;i++){
-//                    System.out.print("|"+resultSetMetaData.getColumnName(i)+"|"+rs.getObject(i)+"\t");
-//                }
-//                System.out.print("\n");
-//            }
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }finally {
-//            disConnect();
-//        }
-//        return rs;
-        //        条件查询
+        // 条件查询
         try {
             connet=getConnect();
             prestmt=connet.prepareStatement(sql);
             rs=prestmt.executeQuery();
         }catch (SQLException e){
+            throw new RuntimeException(e);
+        }finally {
+            disConnect();
+        }
+        return rs;
+    }
+    public static ResultSet AllSelect(String sql) {
+        try {
+            prestmt = connet.prepareStatement(sql);
+            rs = prestmt.executeQuery();
+            ResultSetMetaData resultSetMetaData = prestmt.getMetaData();
+            int colCount=resultSetMetaData.getColumnCount();
+            while (rs.next()) {
+                for (int i=1;i <= colCount;i++){
+                    System.out.print("|"+resultSetMetaData.getColumnName(i)+"|"+rs.getObject(i)+"\t");
+                }
+                System.out.print("\n");
+            }
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }finally {
             disConnect();
