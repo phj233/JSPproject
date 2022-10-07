@@ -28,23 +28,23 @@ public class DBUtil {
         return null;
     }
 
-    public void disConnect() {
+    public static void disConnect() {
         try {
             if (rs != null) {
                 rs.close();
-                System.out.println("successs");
+                System.out.println("dis successs");
             }
             if (stmt != null) {
                 stmt.close();
-                System.out.println("successs");
+                System.out.println("dis successs");
             }
             if (prestmt!=null){
                 prestmt.close();
-                System.out.println("successs");
+                System.out.println("dis successs");
             }
             if (connet!=null){
                 connet.close();
-                System.out.println("successs");
+                System.out.println("dis successs");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -61,32 +61,56 @@ public class DBUtil {
 //                for (int i=1;i <= colCount;i++){
 //                    System.out.print("|"+resultSetMetaData.getColumnName(i)+"|"+rs.getObject(i)+"\t");
 //                }
+//                System.out.print("\n");
 //            }
 //        } catch (SQLException e) {
 //            throw new RuntimeException(e);
+//        }finally {
+//            disConnect();
 //        }
 //        return rs;
-        connet=getConnect();
-        prestmt=connet.prepareStatement(sql);
-        rs=prestmt.executeQuery();
+        //        条件查询
+        try {
+            connet=getConnect();
+            prestmt=connet.prepareStatement(sql);
+            rs=prestmt.executeQuery();
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }finally {
+            disConnect();
+        }
         return rs;
     }
 
-    public static int update(String sql, Object... args)throws SQLException{
-        PreparedStatement pst = connet.prepareStatement(sql);
-        if(args!=null && args.length>0){
-            for (int i = 0; i < args.length; i++) {
-                pst.setObject(i+1, args[i]);
+    public static int update(String sql, Object... args) {
+        int len;
+        try {
+            PreparedStatement pst = connet.prepareStatement(sql);
+            if (args != null && args.length > 0) {
+                for (int i = 0; i < args.length; i++) {
+                    pst.setObject(i + 1, args[i]);
+                }
             }
+            len = pst.executeUpdate();
+            if (len != 0) System.out.println("修改成功");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            disConnect();
         }
-        int len = pst.executeUpdate();
-        if (len!=0) System.out.println("修改成功");
         return len;
     }
-    public static int delete(String sql) throws SQLException {
-        PreparedStatement pst = connet.prepareStatement(sql);
-        int len = pst.executeUpdate();
-        if (len!=0) System.out.println("修改成功");
+    public static int delete(String sql) {
+        int len;
+        try {
+            PreparedStatement pst = connet.prepareStatement(sql);
+            len = pst.executeUpdate();
+            if (len != 0) System.out.println("修改成功");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            disConnect();
+        }
         return len;
     }
 }

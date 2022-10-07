@@ -26,19 +26,19 @@ public class AdminInfoDaoImpl implements AdminInfoDao{
     }
 
     @Override
-    public int addAdminInfo(AdminInfo adminInfo) throws SQLException {
+    public int addAdminInfo(AdminInfo adminInfo) {
         String sql="insert into admininfo(Aid,Aname,Apwd,Alevel) values(?,?,?,?)";
         return DBUtil.update(sql, adminInfo.getaId(), adminInfo.getaName(), adminInfo.getaPwd(), adminInfo.getaLevel());
     }
 
     @Override
-    public int updateAdmin(AdminInfo adminInfo) throws SQLException {
+    public int updateAdmin(AdminInfo adminInfo) {
         String sql="update admininfo set Aname = ? where Aid = ?";
         return DBUtil.update(sql,adminInfo.getaName(),adminInfo.getaId());
     }
 
     @Override
-    public int DeleteAdminInfo(int id) throws SQLException {
+    public int DeleteAdminInfo(int id) {
         String sql="DELETE FROM admininfo WHERE Aid = "+id;
         return DBUtil.delete(sql);
     }
