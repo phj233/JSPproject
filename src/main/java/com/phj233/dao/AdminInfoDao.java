@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface AdminInfoDao {
-    List<AdminInfo> getAdminInfoList(String sql) throws SQLException;
-    int addAdminInfo(AdminInfo adminInfo) throws SQLException;
-    int updateAdmin(AdminInfo adminInfo) throws SQLException;
-    int DeleteAdminInfo(int id) throws SQLException;
+    List<AdminInfo> queryAdminInfo(String sql, Object... params);
+    int addAdminInfo(AdminInfo adminInfo);
+    int updateAdmin(AdminInfo adminInfo);
+    int deleteAdminInfo(int id);
 }

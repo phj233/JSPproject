@@ -1,19 +1,18 @@
 package com.phj233.pojo;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
-public class GoodInfo {
+public class GoodsInfo {
     private Integer gId,gLook;
     private String gName,gClass,gImgurl,gIntro,gBrief;
     private Double gPrice;
     private Integer gAmount;
     private LocalDateTime gDate;
 
-    public GoodInfo() {
+    public GoodsInfo() {
     }
 
-    public GoodInfo(Integer gId, Integer gLook, String gName, String gClass, String gImgurl, String gIntro, String gBrief, Double gPrice, Integer gAmount, LocalDateTime gDate) {
+    public GoodsInfo(Integer gId, Integer gLook, String gName, String gClass, String gImgurl, String gIntro, String gBrief, Double gPrice, Integer gAmount, LocalDateTime gDate) {
         this.gId = gId;
         this.gLook = gLook;
         this.gName = gName;
