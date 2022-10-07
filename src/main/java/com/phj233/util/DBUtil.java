@@ -2,6 +2,7 @@ package com.phj233.util;
 
 
 import java.sql.*;
+import java.util.List;
 
 public class DBUtil {
     private static final String url = "jdbc:mysql://localhost:3306/jspdemo";
@@ -32,41 +33,40 @@ public class DBUtil {
         try {
             if (rs != null) {
                 rs.close();
-                System.out.println("dis successs");
+                System.out.println("ResultSet dis successs");
             }
             if (stmt != null) {
                 stmt.close();
-                System.out.println("dis successs");
+                System.out.println("Statement dis successs");
             }
             if (prestmt!=null){
                 prestmt.close();
-                System.out.println("dis successs");
+                System.out.println("PreparedStatement dis successs");
             }
             if (connet!=null){
                 connet.close();
-                System.out.println("dis successs");
+                System.out.println("Connection dis successs");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-
+    //查询 返回结果集
     public static ResultSet select(String sql) throws SQLException {
-        // 条件查询
         try {
             connet=getConnect();
             prestmt=connet.prepareStatement(sql);
             rs=prestmt.executeQuery();
         }catch (SQLException e){
             throw new RuntimeException(e);
-        }finally {
-            disConnect();
         }
         return rs;
     }
-    public static ResultSet AllSelect(String sql) {
+    // 全查并输出
+    public static ResultSet AllSelect(String table) {
         try {
-            prestmt = connet.prepareStatement(sql);
+            connet=getConnect();
+            prestmt = connet.prepareStatement("select * from "+table);
             rs = prestmt.executeQuery();
             ResultSetMetaData resultSetMetaData = prestmt.getMetaData();
             int colCount=resultSetMetaData.getColumnCount();
@@ -87,13 +87,14 @@ public class DBUtil {
     public static int update(String sql, Object... args) {
         int len;
         try {
-            PreparedStatement pst = connet.prepareStatement(sql);
+            connet=getConnect();
+            prestmt = connet.prepareStatement(sql);
             if (args != null && args.length > 0) {
                 for (int i = 0; i < args.length; i++) {
-                    pst.setObject(i + 1, args[i]);
+                    prestmt.setObject(i + 1, args[i]);
                 }
             }
-            len = pst.executeUpdate();
+            len = prestmt.executeUpdate();
             if (len != 0) System.out.println("修改成功");
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -105,6 +106,7 @@ public class DBUtil {
     public static int delete(String sql) {
         int len;
         try {
+            connet=getConnect();
             PreparedStatement pst = connet.prepareStatement(sql);
             len = pst.executeUpdate();
             if (len != 0) System.out.println("修改成功");

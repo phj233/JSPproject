@@ -31,7 +31,7 @@ public class GoodsinfoDaoImpl implements GoodsinfoDao{
     }
 
     @Override
-    public int addGoodsInfo(GoodInfo goodInfo) throws SQLException {
+    public int addGoodsInfo(GoodInfo goodInfo) {
         String sql="insert into goodsinfo(gId,gLook,gName,gClass,gImgurl,gIntro,gBrief,gPrice,gAmount,gDate) values(?,?,?,?,?,?,?,?,?,?)";
         return DBUtil.update(sql,
                 goodInfo.getgId(),goodInfo.getgLook(),goodInfo.getgName(),
@@ -41,12 +41,12 @@ public class GoodsinfoDaoImpl implements GoodsinfoDao{
     }
 
     @Override
-    public int updateGoods(GoodInfo goodInfo) throws SQLException {
+    public int updateGoods(GoodInfo goodInfo) {
         String sql = "update goodsinfo set Gname = ? where Gid = ?";
         return DBUtil.update(sql, goodInfo.getgName(), goodInfo.getgId());
     }
     @Override
-    public int DeleteGoodsInfo(int id) throws SQLException {
+    public int DeleteGoodsInfo(int id) {
         String sql="DELETE FROM goodsinfo WHERE Gid = "+id;
         return DBUtil.delete(sql);
     }

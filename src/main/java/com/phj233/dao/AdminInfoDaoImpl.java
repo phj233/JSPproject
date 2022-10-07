@@ -22,9 +22,14 @@ public class AdminInfoDaoImpl implements AdminInfoDao{
             adminInfo.setaPwd(selectRs.getString("Apwd"));
             adminInfos.add(adminInfo);
         }
+        DBUtil.disConnect();
         return adminInfos;
     }
-
+    @Override
+    public List<AdminInfo> selectAdmininfo(String id) throws SQLException {
+        String sql="select * from admininfo where Aid= "+id;
+        return getAdminInfoList(sql);
+    }
     @Override
     public int addAdminInfo(AdminInfo adminInfo) {
         String sql="insert into admininfo(Aid,Aname,Apwd,Alevel) values(?,?,?,?)";
