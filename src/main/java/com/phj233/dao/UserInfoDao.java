@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface UserInfoDao {
-    List<UserInfo> getUsersInfoList(String sql) throws SQLException;
-    int addUsersInfo(UserInfo userInfo) throws SQLException;
+    List<UserInfo> getUsersInfoList(String sql, Object... params);
+    int addUsersInfo(UserInfo userInfo);
 
-    int updateUsers(UserInfo userInfo) throws SQLException;
-    int DeleteUsersInfo(int id) throws SQLException;
+    int updateUsers(UserInfo userInfo);
+    int deleteUsersInfo(int id);
 }

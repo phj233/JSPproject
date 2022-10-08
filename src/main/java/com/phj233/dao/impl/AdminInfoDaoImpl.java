@@ -2,7 +2,7 @@ package com.phj233.dao.impl;
 
 import com.phj233.dao.AdminInfoDao;
 import com.phj233.pojo.AdminInfo;
-import com.phj233.util.DBUtil_;
+import com.phj233.util.DBUtil;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +36,7 @@ public class AdminInfoDaoImpl implements AdminInfoDao {
     @Override
     public List<AdminInfo> queryAdminInfo(String sql, Object... params) {
         List<AdminInfo> adminInfoList = new ArrayList<>();
-        List<Map<String,Object>> list = DBUtil_.query(sql,params);
+        List<Map<String,Object>> list = DBUtil.query(sql,params);
         return getAdminsList(adminInfoList, list);
     }
 
@@ -44,7 +44,7 @@ public class AdminInfoDaoImpl implements AdminInfoDao {
     @Override
     public int addAdminInfo(AdminInfo adminInfo) {
         String sql = "insert into admininfo(aId,aName,aPwd,aLevel) values(?,?,?,?)";
-        return DBUtil_.update(sql,adminInfo.getaId(),
+        return DBUtil.update(sql,adminInfo.getaId(),
                 adminInfo.getaName(),adminInfo.getaPwd(),
                 adminInfo.getaLevel());
     }
@@ -52,7 +52,7 @@ public class AdminInfoDaoImpl implements AdminInfoDao {
     @Override
     public int updateAdminInfo(AdminInfo adminInfo) {
         String sql = "update adminInfo set Aname=?,Apwd=?,Alevel=? where Aid=?";
-        return DBUtil_.update(sql,
+        return DBUtil.update(sql,
                 adminInfo.getaName(),adminInfo.getaPwd(),
                 adminInfo.getaLevel(),adminInfo.getaId());
     }
@@ -60,6 +60,6 @@ public class AdminInfoDaoImpl implements AdminInfoDao {
     @Override
     public int deleteAdminInfo(int id) {
         String sql = "delete from adminInfo where gid=?";
-        return DBUtil_.update(sql,id);
+        return DBUtil.update(sql,id);
     }
 }
