@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * @author 未確認の庭師
  */
-public interface GoodsInfoDao_ {
+public interface GoodsInfoDao {
     //查
     List<GoodInfo> queryGoodsInfo(String sql, Object... params);
     //增

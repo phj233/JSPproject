@@ -1,6 +1,6 @@
 package com.phj233.dao.impl;
 
-import com.phj233.dao.GoodsInfoDao_;
+import com.phj233.dao.GoodsInfoDao;
 import com.phj233.pojo.GoodInfo;
 import com.phj233.util.DBUtil_;
 
@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * @author 未確認の庭師
  */
-public class GoodsInfoDaoImpl implements GoodsInfoDao_ {
+public class GoodsInfoDaoImpl implements GoodsInfoDao {
     /**
      * 私有方法，从数据库中查询出来的数据转换成GoodsInfo对象
      * @param goodsInfoList 用于存放GoodsInfo对象的集合
