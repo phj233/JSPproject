@@ -1,10 +1,7 @@
 package com.phj233.dao.impl;
-
 import com.phj233.dao.UserInfoDao;
 import com.phj233.pojo.UserInfo;
 import com.phj233.util.DBUtil;
-
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
