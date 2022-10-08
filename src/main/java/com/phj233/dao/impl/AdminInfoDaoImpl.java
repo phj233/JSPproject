@@ -2,51 +2,64 @@ package com.phj233.dao.impl;
 
 import com.phj233.dao.AdminInfoDao;
 import com.phj233.pojo.AdminInfo;
-import com.phj233.util.DBUtil;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import com.phj233.util.DBUtil_;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+/**
+ * @author 未確認の庭師,phj233
+ */
 public class AdminInfoDaoImpl implements AdminInfoDao {
-
-    @Override
-    public List<AdminInfo> getAdminInfoList(String sql) throws SQLException {
-        ResultSet selectRs = DBUtil.select(sql);
-        List<AdminInfo> adminInfos=new ArrayList<>();
-        while (selectRs.next()){
-            AdminInfo adminInfo=new AdminInfo();
-            adminInfo.setaId(selectRs.getInt("Aid"));
-            adminInfo.setaLevel(selectRs.getString("Alevel"));
-            adminInfo.setaName(selectRs.getString("Aname"));
-            adminInfo.setaPwd(selectRs.getString("Apwd"));
-            adminInfos.add(adminInfo);
+    /**
+     * 私有方法，从数据库中查询出来的数据转换成AdminInfo对象
+     * @param adminInfoList 用于存放AdminInfo对象的集合
+     * @param list 从数据库中查询出来的数据
+     * @return AdminInfo对象的集合
+     */
+    private List<AdminInfo> getAdminsList(List<AdminInfo> adminInfoList, List<Map<String, Object>> list) {
+        for(Map<String,Object> map : list){
+            AdminInfo adminInfo = new AdminInfo();
+            adminInfo.setaId((Integer) map.get("Aid"));
+            adminInfo.setaName((String) map.get("Aname"));
+            adminInfo.setaPwd((String) map.get("Apwd"));
+            adminInfo.setaLevel((String) map.get("Alevel"));
+            adminInfoList.add(adminInfo);
         }
-        DBUtil.disConnect();
-        return adminInfos;
+        return adminInfoList;
     }
+
+    /**
+     * 全查，条件查
+     * @return 商品信息列表
+     */
     @Override
-    public List<AdminInfo> selectAdmininfo(String id) throws SQLException {
-        String sql="select * from admininfo where Aid= "+id;
-        return getAdminInfoList(sql);
+    public List<AdminInfo> queryAdminInfo(String sql, Object... params) {
+        List<AdminInfo> adminInfoList = new ArrayList<>();
+        List<Map<String,Object>> list = DBUtil_.query(sql,params);
+        return getAdminsList(adminInfoList, list);
     }
+
+
     @Override
     public int addAdminInfo(AdminInfo adminInfo) {
-        String sql="insert into admininfo(Aid,Aname,Apwd,Alevel) values(?,?,?,?)";
-        return DBUtil.update(sql, adminInfo.getaId(), adminInfo.getaName(), adminInfo.getaPwd(), adminInfo.getaLevel());
+        String sql = "insert into admininfo(aId,aName,aPwd,aLevel) values(?,?,?,?)";
+        return DBUtil_.update(sql,adminInfo.getaId(),
+                adminInfo.getaName(),adminInfo.getaPwd(),
+                adminInfo.getaLevel());
     }
 
     @Override
-    public int updateAdmin(AdminInfo adminInfo) {
-        String sql="update admininfo set Aname = ? where Aid = ?";
-        return DBUtil.update(sql,adminInfo.getaName(),adminInfo.getaId());
+    public int updateAdminInfo(AdminInfo adminInfo) {
+        String sql = "update adminInfo set Aname=?,Apwd=?,Alevel=? where Aid=?";
+        return DBUtil_.update(sql,
+                adminInfo.getaName(),adminInfo.getaPwd(),
+                adminInfo.getaLevel(),adminInfo.getaId());
     }
 
     @Override
-    public int DeleteAdminInfo(int id) {
-        String sql="DELETE FROM admininfo WHERE Aid = "+id;
-        return DBUtil.delete(sql);
+    public int deleteAdminInfo(int id) {
+        String sql = "delete from adminInfo where gid=?";
+        return DBUtil_.update(sql,id);
     }
-
 }

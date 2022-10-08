@@ -2,42 +2,55 @@ package com.phj233.dao;
 
 import com.phj233.dao.impl.AdminInfoDaoImpl;
 import com.phj233.pojo.AdminInfo;
-import com.phj233.util.DBUtil;
 import org.junit.jupiter.api.Test;
-
-import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * @author 未確認の庭師,phj233
+ */
 class AdminTest {
+
+    //全查
     @Test
-    void testAdminFind() throws SQLException {
-        AdminInfoDaoImpl infoDao=new AdminInfoDaoImpl();
-        String sql="select * from admininfo";
-        List<AdminInfo> adminInfoList = infoDao.getAdminInfoList(sql);
-        for (AdminInfo admin:adminInfoList){
-            System.out.println(admin);
-        }
+    void queryAdminInfoAll() {
+        List<AdminInfo> list = new AdminInfoDaoImpl().queryAdminInfo(
+                "select * from admininfo");
+        list.forEach(System.out::println);
     }
+    //条件查询
     @Test
-    void testAdminAdd() {
-        System.out.println(new AdminInfoDaoImpl().addAdminInfo(
-                new AdminInfo(10013,"phj233","pppp","超管")));
-        DBUtil.AllSelect("admininfo");
+    void queryAdminInfo() {
+        List<AdminInfo> list = new AdminInfoDaoImpl().queryAdminInfo(
+                "select * from admininfo where Aname like ?", "%j%");
+        list.forEach(System.out::println);
     }
+
     @Test
-    void testAdmindelete() {
-        System.out.println(new AdminInfoDaoImpl().DeleteAdminInfo(10013));
-        DBUtil.AllSelect("admininfo");
+    void addAdminInfo() {
+        System.out.println(new AdminInfoDaoImpl().addAdminInfo(new AdminInfo(){
+            {
+                setaId(12345);
+                setaName("testAdmin");
+                setaPwd("test");
+                setaLevel("testLevel");
+            }
+        }));
     }
+
     @Test
-    void testAdminupdate() {
-        System.out.println(new AdminInfoDaoImpl().updateAdmin(
-                new AdminInfo("phj33",10086)));
-        DBUtil.AllSelect("admininfo");
+    void updateAdminInfo() {
+        System.out.println(new AdminInfoDaoImpl().updateAdminInfo(new AdminInfo(){
+            {
+                setaId(12345);
+                setaName("testAdmin2");
+                setaPwd("test");
+                setaLevel("testLevel");
+            }
+        }));
     }
+
     @Test
-    void testAdminselect() throws SQLException {
-        System.out.println(new AdminInfoDaoImpl().selectAdmininfo("10001"));
+    void deleteAdminInfo() {
+        System.out.println(new AdminInfoDaoImpl().deleteAdminInfo(12345));
     }
 }
-

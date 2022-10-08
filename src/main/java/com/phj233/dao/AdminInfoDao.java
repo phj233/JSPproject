@@ -1,15 +1,16 @@
 package com.phj233.dao;
-
 import com.phj233.pojo.AdminInfo;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
-
+/**
+ * @author phj233
+ */
 public interface AdminInfoDao {
-    List<AdminInfo> getAdminInfoList(String sql) throws SQLException;
-    List<AdminInfo> selectAdmininfo(String id)throws SQLException;
-    int addAdminInfo(AdminInfo adminInfo) throws SQLException;
-    int updateAdmin(AdminInfo adminInfo) throws SQLException;
-    int DeleteAdminInfo(int id) throws SQLException;
+    //查
+    List<AdminInfo> queryAdminInfo(String sql, Object... params);
+    //增
+    int addAdminInfo(AdminInfo adminInfo);
+    //改
+    int updateAdminInfo(AdminInfo adminInfo);
+    //删
+    int deleteAdminInfo(int id);
 }
