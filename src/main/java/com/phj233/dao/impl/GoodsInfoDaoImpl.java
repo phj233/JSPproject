@@ -2,7 +2,7 @@ package com.phj233.dao.impl;
 
 import com.phj233.dao.GoodsInfoDao;
 import com.phj233.pojo.GoodInfo;
-import com.phj233.util.DBUtil_;
+import com.phj233.util.DBUtil;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -44,14 +44,14 @@ public class GoodsInfoDaoImpl implements GoodsInfoDao {
     @Override
     public List<GoodInfo> queryGoodsInfo(String sql, Object... params) {
         List<GoodInfo> goodsInfoList = new ArrayList<>();
-        List<Map<String,Object>> list = DBUtil_.query(sql,params);
+        List<Map<String,Object>> list = DBUtil.query(sql,params);
         return getGoodsList(goodsInfoList, list);
     }
 
     @Override
     public int addGoodsInfo(GoodInfo goodsInfo) {
         String sql = "insert into goodsinfo(gid,gname,gprice,gclass,gamount,gdate,gimgurl,glook,gintro,gbrief) values(?,?,?,?,?,?,?,?,?,?)";
-        return DBUtil_.update(sql,goodsInfo.getgId(),
+        return DBUtil.update(sql,goodsInfo.getgId(),
                 goodsInfo.getgName(),goodsInfo.getgPrice(),
                 goodsInfo.getgClass(),goodsInfo.getgAmount(),
                 goodsInfo.getgDate(),goodsInfo.getgImgurl(),
@@ -62,7 +62,7 @@ public class GoodsInfoDaoImpl implements GoodsInfoDao {
     @Override
     public int updateGoodsInfo(GoodInfo goodsInfo) {
         String sql = "update goodsinfo set name=?,price=?,classify=?,amount=?,date=?,img_url=?,look=?,intro=?,brief=? where gid=?";
-        return DBUtil_.update(sql,
+        return DBUtil.update(sql,
                 goodsInfo.getgName(),goodsInfo.getgPrice(),
                 goodsInfo.getgClass(),goodsInfo.getgAmount(),
                 goodsInfo.getgDate(),goodsInfo.getgImgurl(),
@@ -73,6 +73,6 @@ public class GoodsInfoDaoImpl implements GoodsInfoDao {
     @Override
     public int deleteGoodsInfo(int id) {
         String sql = "delete from goodsinfo where gid=?";
-        return DBUtil_.update(sql,id);
+        return DBUtil.update(sql,id);
     }
 }

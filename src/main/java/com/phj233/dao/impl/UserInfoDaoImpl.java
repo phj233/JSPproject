@@ -1,46 +1,48 @@
 package com.phj233.dao.impl;
 
 import com.phj233.dao.UserInfoDao;
-import com.phj233.pojo.GoodInfo;
 import com.phj233.pojo.UserInfo;
 import com.phj233.util.DBUtil;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class UserInfoDaoImpl implements UserInfoDao {
-    @Override
-    public List<UserInfo> getUsersInfoList(String sql) throws SQLException {
-        ResultSet selectRs = DBUtil.select(sql);
-        List<UserInfo> userInfos=new ArrayList<>();
-        while (selectRs.next()){
-            UserInfo userInfo=new UserInfo();
-            userInfo.setuId(selectRs.getInt("Uid"));
-            userInfo.setuEmail(selectRs.getString("Uemail"));
-            userInfo.setuName(selectRs.getString("Uname"));
-            userInfo.setuPwd(selectRs.getString("Upwd"));
-            userInfos.add(userInfo);
+    private List<UserInfo> getUserList(List<Map<String, Object>> list) {
+        List<UserInfo> userInfoList = new ArrayList<>();
+        for(Map<String,Object> map : list){
+            UserInfo userInfo = new UserInfo();
+            userInfo.setuId((Integer) map.get("Uid"));
+            userInfo.setuName((String) map.get("Uname"));
+            userInfo.setuPwd((String) map.get("Upwd"));
+            userInfo.setuEmail((String) map.get("Uemail"));
+            userInfoList.add(userInfo);
         }
-        return userInfos;
+        return userInfoList;
+    }
+    @Override
+    public List<UserInfo> getUsersInfoList(String sql, Object... params) {
+        List<Map<String, Object>> list = DBUtil.query(sql, params);
+        return getUserList(list);
     }
 
     @Override
-    public int addUsersInfo(UserInfo userInfo) throws SQLException {
+    public int addUsersInfo(UserInfo userInfo) {
         String sql="insert into userinfo(Uid,Uname,Upwd,Uemail) values(?,?,?,?)";
         return DBUtil.update(sql, userInfo.getuId(), userInfo.getuName(), userInfo.getuPwd(), userInfo.getuEmail());
     }
 
     @Override
-    public int updateUsers(UserInfo userInfo) throws SQLException {
+    public int updateUsers(UserInfo userInfo)  {
         String sql="update userinfo set Uname = ? where Uid = ?";
         return DBUtil.update(sql,userInfo.getuName(),userInfo.getuId());
     }
 
     @Override
-    public int DeleteUsersInfo(int id) throws SQLException {
-        String sql="DELETE FROM userinfo WHERE Uid = "+id;
-        return DBUtil.delete(sql);
+    public int deleteUsersInfo(int id) {
+        String sql="DELETE FROM userinfo WHERE Uid = ?";
+        return DBUtil.update(sql,id);
     }
 }
