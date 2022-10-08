@@ -1,4 +1,4 @@
-package com.phj233.test;
+package com.phj233.dao;
 
 import com.phj233.dao.impl.GoodsInfoDaoImpl;
 import com.phj233.pojo.GoodInfo;
