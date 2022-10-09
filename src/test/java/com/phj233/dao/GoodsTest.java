@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * @author 未確認の庭師
+ * @author 未確認の庭師,phj233
  */
 class GoodsTest {
 
@@ -42,6 +42,7 @@ class GoodsTest {
                 setgBrief("test");
             }
         }));
+        queryGoodsInfoAll();
     }
 
     @Test
@@ -60,10 +61,12 @@ class GoodsTest {
                 setgBrief("hello");
             }
         }));
+        queryGoodsInfoAll();
     }
 
     @Test
     void deleteGoodsInfo() {
         System.out.println(new GoodsInfoDaoImpl().deleteGoodsInfo(12345));
+        queryGoodsInfoAll();
     }
 }

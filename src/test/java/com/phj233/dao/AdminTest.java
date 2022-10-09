@@ -35,6 +35,7 @@ class AdminTest {
                 setaLevel("testLevel");
             }
         }));
+        queryAdminInfoAll();
     }
 
     @Test
@@ -47,10 +48,12 @@ class AdminTest {
                 setaLevel("testLevel");
             }
         }));
+        queryAdminInfoAll();
     }
 
     @Test
     void deleteAdminInfo() {
         System.out.println(new AdminInfoDaoImpl().deleteAdminInfo(12345));
+        queryAdminInfoAll();
     }
 }

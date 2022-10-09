@@ -31,6 +31,7 @@ class UserInfoTest {
                 setuEmail("test@test.com");
             }
         }));
+        getUsersInfoListAll();
     }
 
     @Test
@@ -41,10 +42,12 @@ class UserInfoTest {
                 setuId(12345);
             }
         }));
+        getUsersInfoListAll();
     }
 
     @Test
     void deleteUsersInfo() {
         System.out.println(new UserInfoDaoImpl().deleteUsersInfo(12345));
+        getUsersInfoListAll();
     }
 }
