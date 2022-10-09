@@ -21,6 +21,8 @@ class UserInfoTest {
         new UserInfoDaoImpl().getUsersInfoList(
                 "select * from userinfo where Upwd like ?", "%6%").forEach(System.out::println);
     }
+
+    //新增管理员信息
     @Test
     void addUsersInfo() {
         System.out.println(new UserInfoDaoImpl().addUsersInfo(new UserInfo(){
@@ -34,6 +36,7 @@ class UserInfoTest {
         getUsersInfoListAll();
     }
 
+    //修改管理员信息
     @Test
     void updateUsers() {
         System.out.println(new UserInfoDaoImpl().updateUsers(new UserInfo(){
@@ -45,6 +48,7 @@ class UserInfoTest {
         getUsersInfoListAll();
     }
 
+    //删除用户信息
     @Test
     void deleteUsersInfo() {
         System.out.println(new UserInfoDaoImpl().deleteUsersInfo(12345));
