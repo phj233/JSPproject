@@ -16,9 +16,9 @@ import java.util.Map;
  */
 public class DBUtil {
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";//数据库驱动
-    private static final String URL = "jdbc:mysql://localhost:3306/jspdemo";//数据库连接地址
+    private static final String URL = "jdbc:mysql://localhost:3306/onlineshop";//数据库连接地址
     private static final String NAME = "root";//数据库用户名
-    private static final String PASSWORD = "phj123456";//数据库密码
+    private static final String PASSWORD = "214218";//数据库密码
     private static Connection connection;
     private static PreparedStatement preparedStatement;
     private static ResultSet resultSet;
@@ -94,6 +94,7 @@ public class DBUtil {
             e.printStackTrace();
         } finally {
             close();
+            //使用后关闭数据库
         }
         return list;
     }

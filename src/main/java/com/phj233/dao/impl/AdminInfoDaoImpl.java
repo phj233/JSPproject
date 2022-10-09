@@ -41,6 +41,7 @@ public class AdminInfoDaoImpl implements AdminInfoDao {
     }
 
 
+    //新增管理员信息
     @Override
     public int addAdminInfo(AdminInfo adminInfo) {
         String sql = "insert into admininfo(aId,aName,aPwd,aLevel) values(?,?,?,?)";
@@ -49,6 +50,7 @@ public class AdminInfoDaoImpl implements AdminInfoDao {
                 adminInfo.getaLevel());
     }
 
+    //修改管理员信息
     @Override
     public int updateAdminInfo(AdminInfo adminInfo) {
         String sql = "update adminInfo set Aname=?,Apwd=?,Alevel=? where Aid=?";
@@ -57,6 +59,7 @@ public class AdminInfoDaoImpl implements AdminInfoDao {
                 adminInfo.getaLevel(),adminInfo.getaId());
     }
 
+    //删除管理员信息
     @Override
     public int deleteAdminInfo(int id) {
         String sql = "delete from adminInfo where gid=?";

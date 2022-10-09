@@ -9,7 +9,7 @@ import java.util.List;
  * @author 未確認の庭師,phj233
  */
 class AdminTest {
-
+    //数据变化后启动全查询
     //全查
     @Test
     void queryAdminInfoAll() {
@@ -25,6 +25,10 @@ class AdminTest {
         list.forEach(System.out::println);
     }
 
+    /*
+    *新增管理员信息
+    *
+     */
     @Test
     void addAdminInfo() {
         System.out.println(new AdminInfoDaoImpl().addAdminInfo(new AdminInfo(){
@@ -38,6 +42,9 @@ class AdminTest {
         queryAdminInfoAll();
     }
 
+    /*
+    *修改管理员信息
+    */
     @Test
     void updateAdminInfo() {
         System.out.println(new AdminInfoDaoImpl().updateAdminInfo(new AdminInfo(){
@@ -51,6 +58,9 @@ class AdminTest {
         queryAdminInfoAll();
     }
 
+    /*
+     *删除管理员信息
+     */
     @Test
     void deleteAdminInfo() {
         System.out.println(new AdminInfoDaoImpl().deleteAdminInfo(12345));

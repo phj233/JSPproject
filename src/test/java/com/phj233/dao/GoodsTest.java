@@ -11,6 +11,8 @@ import java.util.List;
  */
 class GoodsTest {
 
+    //数据变化后启动全查
+
     //全查
     @Test
     void queryGoodsInfoAll() {
@@ -26,6 +28,7 @@ class GoodsTest {
         list.forEach(System.out::println);
     }
 
+    //新增商品信息
     @Test
     void addGoodsInfo() {
         System.out.println(new GoodsInfoDaoImpl().addGoodsInfo(new GoodInfo(){
@@ -45,6 +48,7 @@ class GoodsTest {
         queryGoodsInfoAll();
     }
 
+    //修改商品信息
     @Test
     void updateGoodsInfo() {
         System.out.println(new GoodsInfoDaoImpl().updateGoodsInfo(new GoodInfo(){
@@ -64,6 +68,7 @@ class GoodsTest {
         queryGoodsInfoAll();
     }
 
+    //删除商品信息
     @Test
     void deleteGoodsInfo() {
         System.out.println(new GoodsInfoDaoImpl().deleteGoodsInfo(12345));
