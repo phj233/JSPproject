@@ -97,8 +97,6 @@ public class DBUtil {
         }
         return list;
     }
-
-
     /**
      * 数据库增删改，根据传入的参数个数动态设置占位符参数的值
      * @param sql    SQL语句，包含一个或多个'?'参数占位符

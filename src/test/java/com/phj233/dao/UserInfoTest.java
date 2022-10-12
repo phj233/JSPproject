@@ -14,12 +14,11 @@ class UserInfoTest {
         new UserInfoDaoImpl().getUsersInfoList(
                 "select * from userinfo").forEach(System.out::println);
     }
-
     //条件查询
     @Test
     void getUsersInfoList() {
         new UserInfoDaoImpl().getUsersInfoList(
-                "select * from userinfo where Upwd like ?", "%6%").forEach(System.out::println);
+                "select * from userinfo where Uname like ?", "%6%").forEach(System.out::println);
     }
     @Test
     void addUsersInfo() {

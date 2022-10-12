@@ -1,144 +1,260 @@
-<%@ page contentType="text/html;charset=utf-8"%>
-<%@ page import="com.phj233.util.DBUtil,java.util.List"%>
+<%@ page contentType="text/html;charset=UTF-8"%>
+<%--
+  ~ Copyright (c) 2022. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  ~ Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
+  ~ Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
+  ~ Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
+  ~ Vestibulum commodo. Ut rhoncus gravida arcu.
+  --%>
 
-<html>
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+
 <head>
-<title>我的商城</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="renderer" content="webkit">
+    <meta name="generator" content="Hugo 0.101.0"/>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name='description' content='Prprprprprprprpr---!'>
+    <title>未確認の庭師</title>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/pintuer.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/jc.css">
+    <link rel='canonical' href='https://prprv.com/'>
 
-<script src="${pageContext.request.contextPath}./js/jquery.js"></script>
-<script src="${pageContext.request.contextPath}/js/pintuer.js"></script>
-<script src="${pageContext.request.contextPath}/js/respond.js"></script>
+    <link rel="stylesheet" href="./css/style.base.css">
+    <meta property='og:title' content='未確認の庭師'>
+    <meta property='og:description' content='Prprprprprprprpr---!'>
+    <meta property='og:url' content='https://prprv.com/'>
+    <meta property='og:site_name' content='未確認の庭師'>
+    <meta property='og:type' content='website'>
+    <meta property='og:updated_time' content=' 2022-08-16T13:02:20&#43;08:00 '/>
+    <meta name="twitter:title" content="未確認の庭師">
+    <meta name="twitter:description" content="Prprprprprprprpr---!">
+    <link rel="alternate" type="application/rss&#43;xml" href="https://prprv.com/index.xml">
+    <link rel="shortcut icon" href="/favicon.ico"/>
+    <link rel="shortcut icon" href="/favicon.ico"/>
 </head>
 
-<body>
-	<div class="layout bg bg-black hidden-l">
-		<div class="hidden-s hidden-m x12 float-right ">
-			<div class="x4  text-right height-big float-right">
-			<a href="${pageContext.request.contextPath}/jsp/user/cart.jsp"
-						style="color: red; display: inline-block; width: 121px; height: 45px;">购物车<font
-						size="3" color="white">(${cart.size})</font></a>
-				<a class="text-white">400-123-4567</a><a href="#"
-					class="win-homepage">设为首页</a> | <a href="#" class="win-favorite">加入收藏</a>
-			</div>
-		</div>
-	</div>
-	<div class="layout">
-		<div
-			class="line padding-big-top padding-big-bottom navbar bg-blue bg-inverse ">
-			<div class="x2">
-				<button class="button icon-navicon float-right"
-					data-target="#header-demo3"></button>
-				<img src="img/jclogo(2).png" width="150" class="padding" height="50" />
-			</div>
-			<div class=" x10 padding-top  nav-navicon" id="header-demo3">
-				<div class="x5 text-right ">
-					<ul class="nav nav-menu nav-inline">
-						<li class="active "><a href="#" class=" radius ">首页</a></li>
-						<li><a href="adlogin.jsp">商品管理</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/jsp/admin/ordermanage.jsp">订单管理</a></li>
-						<li><a href="${pageContext.request.contextPath}/AdminManage">管理员管理</a></li>
-					</ul>
-				</div>
-				<div class="x5">
-					<%
-						if (session.getAttribute("user") == null) {
-					%>
-					<%@ include file="login.jsp"%>
-					<%
-						} else {
-							out.println(session.getAttribute("user") + "你好,<br/>欢迎你光顾本店!!!");
-							out.println("<br/><a href='userinfo.jsp'>查看/修改个人信息</a>");
-							out.println("<a href='./Logout'>[注销]</a>");
-						}
-					%>
-				</div>
+<body class="">
+<script src="./js/jquery.js"></script>
+<script>
+    (function () {
 
-			</div>
-		</div>
-	</div>
-	<!--轮播-->
-	<div class="layout">
-		<div class="banner">
-			<div class="carousel">
-				<div class="item">
-					<img src="img/banner1.jpg" width="100%">
-				</div>
-				<div class="item">
-					<img src="img/banner2.jpg" width="100%">
-				</div>
-				<div class="item">
-					<img src="img/banner3.jpg" width="100%">
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="layout">
-		<div class="line">
-			<div class="x2  margin-big-top">
-				<button class="button icon-navicon" data-target="#nav-main1"></button>
-				<ul class="nav nav-main nav-navicon text-center" id="nav-main1">
-					<li class="nav-head">商品分类</li>
-					<%
-						String sql = "select distinct Gclass from GoodsInfo";
-						List<String> vclass = DBUtil.getInfo(sql);
-						for (String st : vclass) {
-					%>
-					<li class="active"><a
-						href="${pageContext.request.contextPath}/Search?cname=<%= st %>"><%=st%></a></li>
-					<%
-						}
-					%>
-				</ul>
-				<br>
-				<div class="x12"><%@ include file="/jsp/admin/adminsearch.jsp"%></div>
-			</div>
-			<div class="x10"><%@ include file="/jsp/user/splist.jsp"%></div>
-		</div>
-		
-		<!--分页-->
-<c:set var="curPage" value="${pages.curPage}"/>
-<c:set var="totalPage" value="${pages.totalPage}"/>
-<div class="x7 text-right">
-	<ul class="pagination">
-	  <c:if test="${curPage>1}">
-      	<li><a href="${pageContext.request.contextPath}/PageChange?curPage=${curPage-1}">&lt;&lt;上一页</a></li>
-      </c:if>
-	</ul>
-	
-	<ul class="pagination pagination-group">
-      	  <select class="input" onchange="this.form.submit()" name="selPage">
-      	      <c:forEach var="i" begin="1" end="${totalPage}" step="1">
-      	          <c:set var="flag" value=""/> <!-- 如果此处不设置为空值，select永远在选中最后一项，页码不会跟着变化 -->
-      	          
-      	          <c:if test="${i==curPage}">
-      	              <c:set var="flag" value="selected"/>
-      	          </c:if>
-      	          
-      	          <option value="${i}" ${flag}>第${i}页</option>
-      	      </c:forEach>
-      	  </select>
-	</ul>
-	
-	<ul class="pagination">
-		<c:if test="${curPage<totalPage}">
-      	 	<li><a href="${pageContext.request.contextPath}/PageChange?curPage=${curPage+1}">下一页>></a></li>
-      	</c:if>
-	</ul>
-	
-	</div >
-	<br/><br/><br/><br/>
-	<%@include file="down.jsp" %>
-<%-- 	<jsp:include page="down.jsp"> --%>
-<!-- 	<div class="container-layout margin-large-top bg-gray"> -->
-<!-- 	<div class="container bg-gray bg-inverse padding-big-top padding-big-bottom"> <div class="table-responsive padding hidden-l"> <ul class="nav nav-sitemap"> <li><a href="#">新闻资讯</a> <ul> <li><a href="#">新闻公告</a></li> <li><a href="#">业界资讯</a></li> <li><a href="#">媒体报道</a></li> </ul> </li> <li><a href="#">产品中心</a> <ul> <li><a href="#">产品分类</a></li> <li><a href="#">产品品牌</a></li> <li><a href="#">产品特色</a></li> </ul> </li> <li><a href="#">技术反馈</a> <ul> <li><a href="#">售后服务</a></li> <li><a href="#">营销网络</a></li> <li><a href="#">服务支持</a></li> </ul> </li> <li><a href="#">留言反馈</a></li> <li><a href="#">联系方式</a></li> </ul> </div> <div class="text-center">版权所有  Pintuer.com All Rights Reserved，图ICP备：380959609</div> </div> -->
-<!-- 	</div> -->
+        // const colorSchemeKey = 'StackColorScheme';
+        // const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        // const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+        //
+        // if (colorSchemeItem === 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+        //     document.documentElement.dataset.scheme = 'dark';
+        // } else {
+        //     document.documentElement.dataset.scheme = 'light';
+        // }
+    })();
+</script>
+<script>
+    $(document).ready(function () {
+        $('.site-name').click(function () {
+            let username = sessionStorage.getItem('username')
+            if (!username) {
+                window.location.href = './jsp/login.jsp'
+            } else {
+                $(this).children('a').text(username)
+            }
+        })
+    })
+</script>
+
+<div class="container main-container flex on-phone--column extended">
+
+    <aside class="sidebar left-sidebar sticky ">
+        <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+        </button>
+
+        <header>
+            <figure class="site-avatar">
+                <a href="/">
+                    <img src="/img/avatar__hu3eeb2aea04ca2baa6616bbe15d9a07da_38267_300x0_resize_box_3.png"
+                         width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                </a>
+                <span class="emoji">🧊</span>
+            </figure>
+            <div class="site-meta">
+                <h1 class="site-name">
+                    <% if(session.getAttribute("username") == null) {
+                        out.print("<a style=\"cursor: pointer\" href='./jsp/login.jsp'>登录</a>");
+                    } else {
+                        out.print("<a>" + session.getAttribute("username") + "</a>");
+                    } %>
+                </h1>
+                <h2 class="site-description">Shop Demo</h2>
+            </div>
+        </header>
+
+        <ol class="social-menu"></ol>
+
+        <ol class="menu" id="main-menu">
+
+            <li class='current'>
+                <a href='/'>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24"
+                         height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z"/>
+                        <polyline points="5 12 3 12 12 3 21 12 19 12"/>
+                        <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"/>
+                        <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"/>
+                    </svg>
+                    <span>主页预览</span>
+                </a>
+            </li>
+
+            <li>
+                <a href='/admin/goods/'>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24"
+                         height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z"/>
+                        <rect x="3" y="4" width="18" height="4" rx="2"/>
+                        <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10"/>
+                        <line x1="10" y1="12" x2="14" y2="12"/>
+                    </svg>
+                    <span>商品管理</span>
+                </a>
+            </li>
+
+            <li>
+                <a href='/admin/orders'>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                         class="feather feather-clipboard">
+                        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                        <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                    </svg>
+                    <span>订单管理</span>
+                </a>
+            </li>
+
+            <li>
+                <a href='/admin/users/'>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                         class="feather feather-users">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    <span>用户管理</span>
+                </a>
+            </li>
+
+            <li>
+                <a href='/user/'>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                         class="feather feather-user">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>个人中心</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="/shop/cart/">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                         class="feather feather-shopping-cart">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span>购物车(0)</span></a>
+            </li>
+
+            <div class="menu-bottom-section">
+
+
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                         class="feather feather-power">
+                        <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
+                        <line x1="12" y1="2" x2="12" y2="12"></line>
+                    </svg>
+                    <span>退出登录</span>
+                </li>
+
+            </div>
+        </ol>
+    </aside>
+
+
+    <main class="main full-width">
+        <section class="article-list"></section>
+        <nav class='pagination'>
+            <span class='page-link current'>1</span>
+            <a class='page-link' href='/page/2/'>2</a>
+            <a class='page-link' href='/page/3/'>3</a>
+        </nav>
+
+        <footer class="site-footer">
+            <section class="copyright">&copy;2022 未確認の庭師</section>
+            <section class="powerby">
+                <!-- <a href="https://icp.gov.moe/?keyword=20220570" target="_blank">萌ICP备20220570号</a> <br /> -->
+            </section>
+        </footer>
+
+    </main>
+
+
+    <aside class="sidebar right-sidebar sticky">
+
+
+        <form action="/search/" class="search-form widget">
+            <p>
+                <label>搜索</label>
+                <input name="keyword" required placeholder="输入关键词..."/>
+
+                <button title="搜索">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24"
+                         height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z"/>
+                        <circle cx="10" cy="10" r="7"/>
+                        <line x1="21" y1="21" x2="15" y2="15"/>
+                    </svg>
+                </button>
+
+            </p>
+        </form>
+
+        <section class="widget tagCloud">
+            <div class="widget-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24"
+                     height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z"/>
+                    <line x1="5" y1="9" x2="19" y2="9"/>
+                    <line x1="5" y1="15" x2="19" y2="15"/>
+                    <line x1="11" y1="4" x2="7" y2="20"/>
+                    <line x1="17" y1="4" x2="13" y2="20"/>
+                </svg>
+            </div>
+            <h2 class="widget-title section-title">分类</h2>
+            <div class="tagCloud-tags">
+                <a href="#">手机</a>
+                <a href="#">电视</a>
+                <a href="#">图书</a>
+                <a href="#">DVD</a>
+            </div>
+        </section>
+    </aside>
+
+
+</div>
+
 </body>
+
 </html>

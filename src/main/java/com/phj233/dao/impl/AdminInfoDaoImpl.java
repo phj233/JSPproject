@@ -13,20 +13,29 @@ import java.util.Map;
 public class AdminInfoDaoImpl implements AdminInfoDao {
     /**
      * 私有方法，从数据库中查询出来的数据转换成AdminInfo对象
-     * @param adminInfoList 用于存放AdminInfo对象的集合
-     * @param list 从数据库中查询出来的数据
+     * @param sql 用于存放AdminInfo对象的集合
      * @return AdminInfo对象的集合
      */
-    private List<AdminInfo> getAdminsList(List<AdminInfo> adminInfoList, List<Map<String, Object>> list) {
+    public List<AdminInfo> getAdminInfoList(String sql) {
+        List<Map<String, Object>> list = DBUtil.query(sql);
+        return getAdminsList(list);
+    }
+    private List<AdminInfo> getAdminsList(List<Map<String, Object>> list) {
+        List<AdminInfo> adminInfoList = new ArrayList<>();
         for(Map<String,Object> map : list){
             AdminInfo adminInfo = new AdminInfo();
-            adminInfo.setaId((Integer) map.get("Aid"));
-            adminInfo.setaName((String) map.get("Aname"));
-            adminInfo.setaPwd((String) map.get("Apwd"));
-            adminInfo.setaLevel((String) map.get("Alevel"));
+            adminInfo.setaId((Integer) map.get("aid"));
+            adminInfo.setaName((String) map.get("name"));
+            adminInfo.setaPwd((String) map.get("password"));
+            adminInfo.setaLevel((String) map.get("level"));
             adminInfoList.add(adminInfo);
         }
         return adminInfoList;
+    }
+    public List<AdminInfo> login(String name, String password){
+        String sql = "select * from admininfo where Aname = ? and Apwd = ?";
+        List<Map<String,Object>> list = DBUtil.query(sql,name,password);
+        return getAdminsList(list);
     }
 
     /**
@@ -37,7 +46,12 @@ public class AdminInfoDaoImpl implements AdminInfoDao {
     public List<AdminInfo> queryAdminInfo(String sql, Object... params) {
         List<AdminInfo> adminInfoList = new ArrayList<>();
         List<Map<String,Object>> list = DBUtil.query(sql,params);
-        return getAdminsList(adminInfoList, list);
+        return getAdminsList(list);
+    }
+    public List<AdminInfo> queryAdminInfo() {
+        List<AdminInfo> adminInfoList = new ArrayList<>();
+        List<Map<String,Object>> list = DBUtil.query("select * from admininfo");
+        return getAdminsList(list);
     }
 
 
@@ -59,7 +73,7 @@ public class AdminInfoDaoImpl implements AdminInfoDao {
 
     @Override
     public int deleteAdminInfo(int id) {
-        String sql = "delete from adminInfo where gid=?";
+        String sql = "delete from adminInfo where Aid=?";
         return DBUtil.update(sql,id);
     }
 }

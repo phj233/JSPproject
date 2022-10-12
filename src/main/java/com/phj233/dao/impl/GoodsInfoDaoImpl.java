@@ -61,7 +61,7 @@ public class GoodsInfoDaoImpl implements GoodsInfoDao {
 
     @Override
     public int updateGoodsInfo(GoodInfo goodsInfo) {
-        String sql = "update goodsinfo set name=?,price=?,classify=?,amount=?,date=?,img_url=?,look=?,intro=?,brief=? where gid=?";
+        String sql = "update goodsinfo set gname=?,gprice=?,gclass=?,gamount=?,gdate=?,gimgurl=?,glook=?,gintro=?,gbrief=? where gid=?";
         return DBUtil.update(sql,
                 goodsInfo.getgName(),goodsInfo.getgPrice(),
                 goodsInfo.getgClass(),goodsInfo.getgAmount(),

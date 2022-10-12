@@ -11,6 +11,12 @@ public class UserInfo {
         this.uEmail = uEmail;
         this.uId = uId;
     }
+    public UserInfo(String uName,String uPwd,String uEmail){
+        this.uName = uName;
+        this.uPwd = uPwd;
+        this.uEmail = uEmail;
+    }
+
 
     public String getuName() {
         return uName;

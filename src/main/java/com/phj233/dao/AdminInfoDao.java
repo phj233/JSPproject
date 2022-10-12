@@ -13,4 +13,5 @@ public interface AdminInfoDao {
     int updateAdminInfo(AdminInfo adminInfo);
     //删
     int deleteAdminInfo(int id);
+    List<AdminInfo> login(String name, String password);
 }

@@ -24,6 +24,22 @@ public class UserInfoDaoImpl implements UserInfoDao {
         List<Map<String, Object>> list = DBUtil.query(sql, params);
         return getUserList(list);
     }
+    public List<UserInfo> getUsersInfoList() {
+        List<Map<String, Object>> list = DBUtil.query("select * from userinfo");
+        return getUserList(list);
+    }
+    public UserInfo login(UserInfo userInfo) {
+        UserInfo user = new UserInfo();
+        List<Map<String, Object>> mapList = DBUtil.query("select Uid,Uname,Uemail,Upwd from userinfo where Uemail = ? and Upwd = ?",
+                userInfo.getuEmail(),userInfo.getuPwd());
+        for(Map<String,Object> userMap : mapList){
+            user.setuId((Integer) userMap.get("Uid"));
+            user.setuName((String) userMap.get("Uname"));
+            user.setuEmail((String) userMap.get("Uemail"));
+            user.setuPwd((String) userMap.get("Upwd"));
+        }
+        return user;
+    }
 
     @Override
     public int addUsersInfo(UserInfo userInfo) {
