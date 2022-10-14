@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.phj233.mybatis.mappers.UserMapper">
+    <!--int insertUser();-->
+    <insert id="insertUser">
+        insert into info_user values(null,#{username},#{password},#{email},#{is_admin})
+    </insert>
+    <select id="getUserList" resultType="com.phj233.pojo.User">
+        select * from info_user
+    </select>
+    <select id="getUserAdmin" resultType="Boolean">
+        select is_admin from info_user where uid = #{uid}
+    </select>
+    <select id="getUserById" resultType="com.phj233.pojo.User">
+        select * from info_user where uid = #{uid}
+    </select>
+    <delete id="deleteUser">
+    delete from info_user where username = 'phj233'
+</delete>
+</mapper>

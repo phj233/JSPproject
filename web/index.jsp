@@ -86,6 +86,7 @@
                     } else {
                         out.print("<a>" + session.getAttribute("username") + "</a>");
                     } %>
+                    <br>
                 </h1>
                 <h2 class="site-description">Shop Demo</h2>
             </div>
