@@ -1,0 +1,31 @@
+<!--
+  ~ Copyright (c) 2022. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  ~ Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
+  ~ Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
+  ~ Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
+  ~ Vestibulum commodo. Ut rhoncus gravida arcu.
+  -->
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.phj233.mybatis.mappers.GoodsMapper">
+    <insert id="insertGoods" useGeneratedKeys="true" keyProperty="gid">
+        insert into info_goods values (null,#{name},#{price},#{classify},#{amount},#{date},#{img},#{look},#{intro},#{brief})
+    </insert>
+    <select id="selectAllGoods" resultType="com.phj233.pojo.Goods">
+        select * from info_goods
+    </select>
+    <select id="selectGoodsByName" resultType="com.phj233.pojo.Goods">
+        select * from info_goods where name = #{name}
+    </select>
+    <select id="selectGoodsById" resultType="com.phj233.pojo.Goods">
+        select * from info_goods where gid = #{gid}
+    </select>
+    <update id="updateGoods">
+        update info_goods set name=#{name},price=#{price},classify=#{classify},amount=#{amount},date=#{date},img=#{img},look=#{look},intro=#{intro},brief=#{brief} where gid=#{gid}
+    </update>
+    <delete id="deleteGoods">
+        delete from info_goods where gid = #{gid}
+    </delete>
+</mapper>

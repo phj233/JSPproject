@@ -12,7 +12,6 @@ import com.phj233.pojo.User;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @projectName: JSPproject
@@ -27,15 +26,12 @@ public interface UserMapper {
      * 添加用户信息
      */
     int insertUser(User user);
-    int updateUser();
-    int deleteUser();
+    int updateUser(User user);
+    Boolean deleteUser(@Param("uid") int uid);
     List<User> getUserList();
     User getUserById(@Param("uid") int uid);
     Boolean getUserAdmin(@Param("uid") int uid);
-    User selectUserById();
-    User selectUserByName(String username);
-    User checkLogin(String username, String password);
-    User checkLoginByMap(Map<String, Object> map);
-    User checkLoginByParam(@Param("username") String username, @Param("password") String password);
+    User selectUserByName(@Param("username")String username);
+    User checkLogin(@Param("username") String username, @Param("password") String password);
 
 }
