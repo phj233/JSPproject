@@ -34,7 +34,7 @@ class UserMapperTest {
     }
     @Test
     public void getUserAdmin(){
-        Boolean res = userMapper.getUserAdmin(9);
+        Boolean res = userMapper.getUserAdminByUsername("phj233");
         System.out.println(res);
     }
     @Test
@@ -54,7 +54,7 @@ class UserMapperTest {
     }
     @Test
     public void checkLogin(){
-        User res=userMapper.checkLogin("phj233","phj123456");
+        Boolean res=userMapper.checkLogin("2780990934@qq.com","phj123456");
         System.out.println(res);
     }
 }

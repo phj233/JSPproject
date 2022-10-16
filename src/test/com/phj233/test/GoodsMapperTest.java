@@ -53,6 +53,7 @@ public class GoodsMapperTest {
         Goods goods=new Goods(2,"testProduce",114514,"垃圾",1919,
                 LocalDateTime.now(),"test.img", 1,"81","0");
         Boolean res=goodsMapper.updateGoods(goods);
+        System.out.println(res);
     }
     @Test
     public void deleteGoods(){

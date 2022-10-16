@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright (c) 2022. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  ~ Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
+  ~ Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
+  ~ Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
+  ~ Vestibulum commodo. Ut rhoncus gravida arcu.
+  -->
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.phj233.mybatis.mappers.OrderGoodsMapper">
+    <insert id="insertOrderGoods" useGeneratedKeys="true" keyProperty="id">
+        insert into order_goods values (null,#{uid},#{oid},#{amount},#{price})
+    </insert>
+    <select id="selectOrderGoodsById" resultType="com.phj233.pojo.OrderGoods">
+        select * from order_goods where id = #{id}
+    </select>
+    <select id="selectOrderGoodsByUid" resultType="com.phj233.pojo.OrderGoods">
+        select * from order_goods where uid = #{uid}
+    </select>
+    <update id="updateOrderGoods" keyProperty="id">
+        update order_goods set uid=#{uid},oid=#{oid},amount=#{amount},price=#{price} where id=#{id}
+    </update>
+    <delete id="deleteOrderGoods">
+        delete from order_goods where id = #{id}
+    </delete>
+</mapper>

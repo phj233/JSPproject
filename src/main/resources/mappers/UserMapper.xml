@@ -10,8 +10,11 @@
     <select id="getUserList" resultType="com.phj233.pojo.User">
         select * from info_user
     </select>
-    <select id="getUserAdmin" resultType="Boolean">
-        select is_admin from info_user where uid = #{uid}
+    <select id="getUserAdminByEmail" resultType="Boolean">
+        select is_admin from info_user where email = #{email}
+    </select>
+    <select id="getUserAdminByUsername" resultType="Boolean">
+        select is_admin from info_user where username=#{username}
     </select>
     <select id="getUserById" resultType="com.phj233.pojo.User">
         select * from info_user where uid = #{uid}
@@ -19,8 +22,8 @@
     <select id="selectUserByName" resultType="com.phj233.pojo.User">
         select * from info_user where username = #{username}
     </select>
-    <select id="checkLogin" resultType="com.phj233.pojo.User">
-        select * from info_user where username = #{username} and password = #{password}
+    <select id="checkLogin" resultType="Boolean">
+        select * from info_user where (username = #{username} or email=#{username}) and password = #{password}
     </select>
     <update id="updateUser">
         update info_user set email=#{email},username=#{username},password=#{password},is_admin=#{is_admin} where uid=#{uid}

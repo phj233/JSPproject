@@ -30,8 +30,9 @@ public interface UserMapper {
     Boolean deleteUser(@Param("uid") int uid);
     List<User> getUserList();
     User getUserById(@Param("uid") int uid);
-    Boolean getUserAdmin(@Param("uid") int uid);
+    Boolean getUserAdminByEmail(@Param("email") String email);
+    Boolean getUserAdminByUsername(@Param("username") String username);
     User selectUserByName(@Param("username")String username);
-    User checkLogin(@Param("username") String username, @Param("password") String password);
+    Boolean checkLogin(@Param("username") String username, @Param("password") String password);
 
 }
