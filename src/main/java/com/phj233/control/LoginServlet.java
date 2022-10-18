@@ -8,31 +8,39 @@
 
 package com.phj233.control;
 import com.phj233.impl.IsLoginImpl;
+import com.phj233.mybatis.mappers.GoodsMapper;
+import com.phj233.pojo.Goods;
 import com.phj233.service.IsLogin;
+import com.phj233.util.SqlSessionUtil;
+import org.apache.ibatis.session.SqlSession;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 
 @WebServlet(name = "LoginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     @Override
     protected void doGet(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
-        request.getRequestDispatcher("/jsp/login.jsp").forward(request,response);
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=utf-8");
         String name=request.getParameter("name");
         String passwd=request.getParameter("passwd");
-        System.out.println(name+"+"+passwd);
+        SqlSession sqlSession= SqlSessionUtil.getSqlSession();
+        GoodsMapper goodsMapper = sqlSession.getMapper(GoodsMapper.class);
+        List<Goods> allClassify=goodsMapper.selectAllClassify();
         IsLogin login = new IsLoginImpl();
         if (login.userLogin(name,passwd)){
-            response.sendRedirect("index.jsp");
-        }else response.sendRedirect("login.jsp");
+            HttpSession session = request.getSession();
+            session.setAttribute("username", name);
+            session.setAttribute("classifyList",allClassify);
+            response.sendRedirect("index.html");
+        }else response.sendRedirect("/jsp/login.jsp");
 
 
 

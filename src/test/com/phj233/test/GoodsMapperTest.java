@@ -39,6 +39,11 @@ public class GoodsMapperTest {
         System.out.println(res);
     }
     @Test
+    public void selectAllClassify(){
+        List<Goods> res = goodsMapper.selectAllClassify();
+        System.out.println(res);
+    }
+    @Test
     public void selectGoodsByName(){
         List<Goods> res = goodsMapper.selectGoodsByName("testProduce");
         System.out.println(res);

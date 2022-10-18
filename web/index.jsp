@@ -9,16 +9,15 @@
 
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-
 <head>
     <meta name="generator" content="Hugo 0.101.0"/>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <meta name='description' content='Prprprprprprprpr---!'>
+    <meta name="referrer" content="no-referrer" />
     <title>未確認の庭師</title>
-
+    <link rel="stylesheet" href="./css/style.goods.css">
     <link rel='canonical' href='https://prprv.com/'>
-
     <link rel="stylesheet" href="./css/style.base.css">
     <meta property='og:title' content='未確認の庭師'>
     <meta property='og:description' content='Prprprprprprprpr---!'>
@@ -34,7 +33,7 @@
 </head>
 
 <body class="">
-<script src="./js/jquery.js"></script>
+<script src="./js/jquery-3.6.1.min.js"></script>
 <script>
     (function () {
 
@@ -54,11 +53,42 @@
         $('.site-name').click(function () {
             let username = sessionStorage.getItem('username')
             if (!username) {
-                window.location.href = './jsp/login.jsp'
+                window.location.href = '/JSPproject'
             } else {
                 $(this).children('a').text(username)
             }
         })
+    })
+    $.ajax({
+        url: "./goodsinfo?info=all",
+        type: "get",
+        success: function (data){
+            var bookAllList = JSON.parse(data)
+            for(let book in bookAllList){
+                console.log(bookAllList[book])
+                let book_li = $('.book-list-ul li:eq(0)').clone(true)
+                $('.book-list-ul').append(book_li)
+            }
+            $('.book-list-ul li').each(function (index, element) {
+                $(element).children('a').text(bookAllList[index].name)
+                $(element).find('.goods-id').text(bookAllList[index].gid)
+                $(element).children('img').attr('src', bookAllList[index].img)
+                $(element).children('.book-cart-add').children('a:eq(0)').text('¥'+bookAllList[index].price)
+            })
+            $(".book-list-ul li").last().remove();
+
+        }
+    })
+    $.ajax({
+        url: "./goodsinfo?info=classify",
+        type: "get",
+        success:function (data){
+            var bookClassify = JSON.parse(data);
+            for (let i in bookClassify){
+                console.log(bookClassify[i]);
+                $(".tagCloud-tags").append("<a>"+bookClassify[i]+"</a>");
+            }
+        }
     })
 </script>
 
@@ -74,7 +104,7 @@
         <header>
             <figure class="site-avatar">
                 <a href="/">
-                    <img src="/img/avatar__hu3eeb2aea04ca2baa6616bbe15d9a07da_38267_300x0_resize_box_3.png"
+                    <img src=""
                          width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
                 </a>
                 <span class="emoji">🧊</span>
@@ -101,10 +131,10 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24"
                          height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                          stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z"/>
-                        <polyline points="5 12 3 12 12 3 21 12 19 12"/>
-                        <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"/>
-                        <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"/>
+                        <path stroke="none" d="M0 0h24v24H0z"></path>
+                        <polyline points="5 12 3 12 12 3 21 12 19 12"></polyline>
+                        <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
+                        <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
                     </svg>
                     <span>主页预览</span>
                 </a>
@@ -199,11 +229,27 @@
             <a class='page-link' href='/page/2/'>2</a>
             <a class='page-link' href='/page/3/'>3</a>
         </nav>
-
+        <section class="book-list">
+            <div>
+                <ul class="book-list-ul">
+                    <li>
+                        <img src=" " width="108px" height="155px"  alt="">
+                        <br>
+                        <a></a>
+                        <div class="book-cart-add">
+                            <a></a>
+                            <a>
+                                <span class="goods-id" style="display: none">23</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
         <footer class="site-footer">
             <section class="copyright">&copy;2022 未確認の庭師</section>
             <section class="powerby">
-                <!-- <a href="https://icp.gov.moe/?keyword=20220570" target="_blank">萌ICP备20220570号</a> <br /> -->
             </section>
         </footer>
 
@@ -242,13 +288,12 @@
                     <line x1="11" y1="4" x2="7" y2="20"/>
                     <line x1="17" y1="4" x2="13" y2="20"/>
                 </svg>
-            </div>
+            </div>.
             <h2 class="widget-title section-title">分类</h2>
             <div class="tagCloud-tags">
-                <a href="#">手机</a>
-                <a href="#">电视</a>
-                <a href="#">图书</a>
-                <a href="#">DVD</a>
+                <script>
+
+                </script>
             </div>
         </section>
     </aside>

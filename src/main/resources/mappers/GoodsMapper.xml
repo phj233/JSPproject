@@ -16,6 +16,9 @@
     <select id="selectAllGoods" resultType="com.phj233.pojo.Goods">
         select * from info_goods
     </select>
+    <select id="selectAllClassify" resultType="String">
+        select classify from info_goods group by classify
+    </select>
     <select id="selectGoodsByName" resultType="com.phj233.pojo.Goods">
         select * from info_goods where name = #{name}
     </select>

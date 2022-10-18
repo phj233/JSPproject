@@ -14,6 +14,7 @@ import java.util.List;
 
 public interface GoodsMapper {
     Boolean insertGoods(Goods goods);
+    List<Goods> selectAllClassify();
     List<Goods> selectAllGoods();
     List<Goods> selectGoodsByName(@Param("name") String name);
     Goods selectGoodsById(@Param("gid") Integer gid);
