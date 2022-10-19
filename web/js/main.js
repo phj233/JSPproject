@@ -1,9 +1,9 @@
     $(document).ready(function () {
         let showName = $('.site-name').children('a')
-        if (localStorage.getItem('username') == null) {
-            showName.text('登录');
+        if (sessionStorage.getItem('username') != null) {
+            showName.text(sessionStorage.getItem('username'));
         } else {
-            showName.text(localStorage.getItem('username'))
+            showName.text('登录');
         }
 
 

@@ -30,7 +30,6 @@ public class User {
         this.email = email;
         this.is_admin = is_admin;
     }
-
     @Override
     public String toString() {
         return "User{" +

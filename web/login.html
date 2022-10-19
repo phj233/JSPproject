@@ -160,7 +160,11 @@
                         },
                         success: function (data){
                             console.log(data);
-                            localStorage.setItem("username",data.username);
+                            sessionStorage.setItem("username",data.username);
+                            sessionStorage.setItem("passwd",data.password);
+                            sessionStorage.setItem("email",data.email);
+                            sessionStorage.setItem("uid",data.id);
+                            sessionStorage.setItem("admin",data.admin);
                             window.location.replace("./index.html");
                         },
                         error: function (){

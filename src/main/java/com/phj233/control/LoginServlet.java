@@ -8,7 +8,6 @@
 
 package com.phj233.control;
 import com.alibaba.fastjson2.JSON;
-import com.oracle.webservices.internal.api.message.ContentType;
 import com.phj233.impl.IsLoginImpl;
 import com.phj233.pojo.User;
 import com.phj233.service.IsLogin;
@@ -37,11 +36,6 @@ public class LoginServlet extends HttpServlet {
         if (login.userLogin(name, passwd)) {
             System.out.println(JSON.toJSONString(user));
             out.print(JSON.toJSONString(user));
-        } else {
-            out.print("{status:0}");
         }
-
-
-
     }
 }
