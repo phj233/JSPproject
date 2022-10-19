@@ -1,11 +1,10 @@
-<%@ page contentType="text/html;charset=UTF-8"%>
-<%--
+<!--
   ~ Copyright (c) 2022. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   ~ Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
   ~ Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
   ~ Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
   ~ Vestibulum commodo. Ut rhoncus gravida arcu.
-  --%>
+  -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -138,22 +137,48 @@
             color: #000;
         }
     </style>
+    <script src="js/jquery-3.6.1.min.js"></script>
 </head>
 <body>
     <div class="container">
         <div class="div-description">
-            <img src="./1.jpg" alt=""><span></span>
+            <img src="" alt=""><span></span>
         </div>
         <div class="div-form">
-            <form action="login" method="post" class="form-login">
+            <script>
+                function getUserData(){
+                    let name=$("input[name='name']").val();
+                    let passwd=$("input[name='passwd']").val();
+                    console.log(name+passwd);
+                    $.ajax({
+                        type: "post",
+                        dataType: "json",
+                        url: "./login",
+                        data: {
+                            "name":name,
+                            "passwd":passwd
+                        },
+                        success: function (data){
+                            console.log(data);
+                            localStorage.setItem("username",data.username);
+                            window.location.replace("./index.html");
+                        },
+                        error: function (){
+                            alert("数据错误");
+                        }
+
+                    })
+                }
+            </script>
+            <div class="form-login">
                 <h1>login</h1>
                 <input type="text" name="name" placeholder="帐号">
                 <input type="password" name="passwd" placeholder="密码">
-                <button type="submit">Login</button>
+                <button type="submit" onclick="getUserData()">Login</button>
                 <div class="control">
                     <span>没有帐号？<a href="#">Register</a></span>
                 </div>
-            </form>
+            </div>
             <form action="" class="form-register disappear">
                 <h1>Register</h1>
                 <input type="text" placeholder="帐号">
@@ -165,7 +190,7 @@
             </form>
         </div>
         <div class="div-description">
-            <img src="./1.jpg" alt=""><span></span>
+            <img src="" alt=""><span></span>
         </div>
     </div>
 

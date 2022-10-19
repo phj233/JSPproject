@@ -8,6 +8,8 @@
 
 package com.phj233.service;
 
+import com.phj233.pojo.User;
+
 /**
  * @projectName: JSPproject
  * @package: com.phj233.service
@@ -21,4 +23,6 @@ public interface IsLogin {
     Boolean adminLogin(String name,String passwd);
 
     Boolean userLogin(String name, String passwd);
+
+    User getUser(String info);
 }

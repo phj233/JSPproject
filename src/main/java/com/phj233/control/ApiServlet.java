@@ -23,21 +23,20 @@ import java.io.PrintWriter;
 /**
  * @projectName: JSPproject
  * @package: com.phj233.control
- * @className: GoodsServlet
+ * @className: ApiServlet
  * @author: phj233
  * @date: 2022/10/18 8:08
  * @version: 1.0
  */
-@WebServlet(name = "GoodsServlet", value = "/goodsinfo")
-public class GoodsServlet extends HttpServlet {
+@WebServlet(name = "ApiServlet", value = "/api")
+public class ApiServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/javascript;charset=UTF-8");
-        request.getParameter("classify");
         PrintWriter out = response.getWriter();
-        String param=request.getParameter("info");
+        String param=request.getParameter("data");
         SqlSession sqlSession = SqlSessionUtil.getSqlSession();
         GoodsMapper goodsMapper = sqlSession.getMapper(GoodsMapper.class);
         switch (param){

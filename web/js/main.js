@@ -1,14 +1,14 @@
-$(document).ready(function () {
-    let showName = $('.site-name').children('a')
-    if (localStorage.getItem('username') == null) {
-        showName.text('登录').attr('href', '/JSPproject')
-    } else {
-        showName.text(localStorage.getItem('username'))
-    }
+    $(document).ready(function () {
+        let showName = $('.site-name').children('a')
+        if (localStorage.getItem('username') == null) {
+            showName.text('登录');
+        } else {
+            showName.text(localStorage.getItem('username'))
+        }
 
 
     $.ajax({
-        url: "./goodsinfo?info=all",
+        url: "./api?data=all",
         type: "get",
         success: function (data){
             let bookAllList = JSON.parse(data)
@@ -28,7 +28,7 @@ $(document).ready(function () {
     })
 
     $.ajax({
-        url: "./goodsinfo?info=classify",
+        url: "./api?data=classify",
         type: "get",
         success:function (data){
             var bookClassify = JSON.parse(data);

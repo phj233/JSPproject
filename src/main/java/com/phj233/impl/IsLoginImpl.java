@@ -9,6 +9,7 @@
 package com.phj233.impl;
 
 import com.phj233.mybatis.mappers.UserMapper;
+import com.phj233.pojo.User;
 import com.phj233.service.IsLogin;
 import com.phj233.util.SqlSessionUtil;
 import org.apache.ibatis.session.SqlSession;
@@ -31,5 +32,9 @@ public class IsLoginImpl implements IsLogin {
     @Override
     public Boolean userLogin(String name, String passwd) {
         return userMapper.checkLogin(name,passwd);
+    }
+    @Override
+    public User getUser(String info){
+        return  userMapper.getUser(info);
     }
 }

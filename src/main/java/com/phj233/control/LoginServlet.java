@@ -7,40 +7,39 @@
  */
 
 package com.phj233.control;
+import com.alibaba.fastjson2.JSON;
+import com.oracle.webservices.internal.api.message.ContentType;
 import com.phj233.impl.IsLoginImpl;
-import com.phj233.mybatis.mappers.GoodsMapper;
-import com.phj233.pojo.Goods;
+import com.phj233.pojo.User;
 import com.phj233.service.IsLogin;
-import com.phj233.util.SqlSessionUtil;
-import org.apache.ibatis.session.SqlSession;
-
-import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.List;
+import java.io.PrintWriter;
 
 @WebServlet(name = "LoginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     @Override
-    protected void doGet(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
+    protected void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        this.doPost(request,response);
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html;charset=utf-8");
+        response.setContentType("application/json; charset=utf-8");
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Headers"," Content-Type");
         String name=request.getParameter("name");
         String passwd=request.getParameter("passwd");
-        SqlSession sqlSession= SqlSessionUtil.getSqlSession();
-        GoodsMapper goodsMapper = sqlSession.getMapper(GoodsMapper.class);
-        List<Goods> allClassify=goodsMapper.selectAllClassify();
+        PrintWriter out = response.getWriter();
         IsLogin login = new IsLoginImpl();
-        if (login.userLogin(name,passwd)){
-            HttpSession session = request.getSession();
-            session.setAttribute("username", name);
-            session.setAttribute("classifyList",allClassify);
-            response.sendRedirect("index.html");
-        }else response.sendRedirect("/jsp/login.jsp");
+        User user = login.getUser(name);
+        if (login.userLogin(name, passwd)) {
+            System.out.println(JSON.toJSONString(user));
+            out.print(JSON.toJSONString(user));
+        } else {
+            out.print("{status:0}");
+        }
 
 
 

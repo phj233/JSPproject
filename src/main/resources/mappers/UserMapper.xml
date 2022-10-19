@@ -10,6 +10,9 @@
     <select id="getUserList" resultType="com.phj233.pojo.User">
         select * from info_user
     </select>
+    <select id="getUser" resultType="com.phj233.pojo.User">
+        select * from info_user where username=#{info} or email=#{info}
+    </select>
     <select id="getUserAdminByEmail" resultType="Boolean">
         select is_admin from info_user where email = #{email}
     </select>
