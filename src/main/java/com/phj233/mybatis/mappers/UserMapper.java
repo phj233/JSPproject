@@ -25,7 +25,7 @@ public interface UserMapper {
     /**
      * 添加用户信息
      */
-    int insertUser(User user);
+    Boolean insertUser(User user);
     Boolean updateUser(User user);
     Boolean deleteUser(@Param("uid") int uid);
     List<User> getUserList();

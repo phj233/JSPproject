@@ -176,18 +176,49 @@
             </script>
             <div class="form-login">
                 <h1>login</h1>
-                <input type="text" name="name" placeholder="帐号">
+                <input type="text" name="name" placeholder="用户名/邮箱">
                 <input type="password" name="passwd" placeholder="密码">
                 <button type="submit" onclick="getUserData()">Login</button>
                 <div class="control">
                     <span>没有帐号？<a href="#">Register</a></span>
                 </div>
             </div>
-            <form action="" class="form-register disappear">
+            <form class="form-register disappear">
+                <script>
+                    function userReg(){
+                        let regName=$("input[name='regName']").val();
+                        let regPasswd=$("input[name='regPasswd']").val();
+                        let regRePasswd=$("input[name='regRePasswd']").val();
+                        let regEmail=$("input[name='regEmail']").val();
+                        if (regRePasswd!==regPasswd) alert("密码不一致");
+                        console.log(regName+regPasswd+regRePasswd+regEmail);
+                        $.ajax({
+                            type: "post",
+                            dataType: "json",
+                            url: "./register",
+                            data: {
+                                "regName":regName,
+                                "regPasswd":regPasswd,
+                                "regEmail":regEmail
+                            },
+                            success: function (data){
+                                if (!data){
+                                    alert("注册成功！");
+                                }
+                            },
+                            error: function (){
+                                alert("注册失败");
+                            }
+
+                        })
+                    }
+                </script>
                 <h1>Register</h1>
-                <input type="text" placeholder="帐号">
-                <input type="password" placeholder="密码">
-                <button type="submit">Register</button>
+                <input type="text" name="regName" placeholder="用户名">
+                <input type="text" name="regEmail" placeholder="邮箱">
+                <input type="password" name="regPasswd" placeholder="密码">
+                <input type="password" name="regRePasswd" placeholder="重复密码">
+                <button type="submit" onclick="userReg()">Register</button>
                 <div class="control">
                     <span>已有帐号？<a href="#">Login</a></span>
                 </div>

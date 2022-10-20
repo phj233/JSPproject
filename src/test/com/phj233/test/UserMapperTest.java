@@ -23,7 +23,7 @@ class UserMapperTest {
     public void insertUser() {
         User user = new User(null,"2780990934@qq.com","phj233","phj123456",true);
         //提交事务
-        int res=userMapper.insertUser(user);
+        Boolean res=userMapper.insertUser(user);
         //sqlSession.commit();
         System.out.println("result:" + res);
     }
